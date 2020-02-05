@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    {{textTest}}
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <el-input v-model="textTest"></el-input>
