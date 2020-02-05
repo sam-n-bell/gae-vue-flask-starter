@@ -13,8 +13,10 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-from flask import Flask, render_template
-
+from flask import Flask, request, render_template, jsonify
+from flask_cors import CORS
+import pandas as pd
+import pickle
 import logging
 import jinja2
 import os
@@ -25,11 +27,17 @@ import urllib.request
 app = Flask(__name__)
 app.jinja_loader = jinja2.FileSystemLoader('app/dist')
 
+CORS(app)
 
 @app.route('/hello')
 def hello():
     """Return a friendly HTTP greeting."""
     return 'Hello World!'
+
+@app.route('/api/test', methods=['post'])
+def testAPI():
+    return jsonify({'message': 'hello world'})
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
